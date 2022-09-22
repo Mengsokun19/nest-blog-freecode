@@ -11,6 +11,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { PostDto } from './dto/post.dto';
 import { Post as PostEntity } from './post.entity';
 import { PostsService } from './posts.service';
@@ -20,6 +21,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
+  @ApiBearerAuth()
   async findAll() {
     return await this.postsService.findAll();
   }
